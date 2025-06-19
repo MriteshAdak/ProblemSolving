@@ -12,3 +12,4 @@ var removeElement = function(nums, val) {
     }
     return nums.length;
 };
+// Solved
