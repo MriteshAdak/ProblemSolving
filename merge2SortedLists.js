@@ -29,3 +29,5 @@ var mergeTwoLists = function(list1, list2) {
 
     return mergedList.next;
 };
+
+//Solved
