@@ -14,11 +14,8 @@ var plusOne = function(digits) {
                 digits[i]++;
                 return digits;
             }
-            else if (i !== 0) {
-                digits[i] = 0;
-            }
-            else if (i === 0 && digits[i] === 9){
-                digits[i] = 0;
+            digits[i] = 0;
+            if (i === 0){
                 digits.unshift(1);
                 return digits;
             }
@@ -26,4 +23,4 @@ var plusOne = function(digits) {
     }
 };
 
-//Solved
+//Solved and improved by removing redundancy
