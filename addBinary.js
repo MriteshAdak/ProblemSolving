@@ -63,3 +63,5 @@ var addBinary = function (a, b) {
 
   return resultArray.join("");*/
 };
+
+// Solved but with some help
