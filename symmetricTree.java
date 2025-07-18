@@ -33,16 +33,8 @@ class Solution {
     }
 
     public boolean isSymmetric(TreeNode root) {
-        // Initial check to handle null pointer exceptions before the two halfs of the tree are divided
-        if (root == null || (root.left == null && root.right == null)) {
-            return true;
-        } else if (root.left == null || root.right == null) {
-            return false;
-        } else { //dividing the tree into 2 halfs and chekcing for equality
-            TreeNode leftTreeNode = root.left;
-            TreeNode rightTreeNode = root.right;
-            return equalTreeCheck(leftTreeNode, rightTreeNode);
-        }
+        //deleted the redundancies realted to null checks
+        return equalTreeCheck(root.left, root.right);
     }
 }
 
