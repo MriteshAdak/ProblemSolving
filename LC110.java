@@ -16,19 +16,26 @@
 class Solution {
     public boolean isBalanced(TreeNode root) {
         if(root == null || (root.left == null && root.right == null)) return true;
+        
+        int depthOfLeftSubTree = calculateDepthOfBinaryTree(root.left);
+        int depthOfRightSubTree = calculateDepthOfBinaryTree(root.right);
+
+        return Math.abs(depthOfLeftSubTree - depthOfRightSubTree) <= 1;
+    }
+
+    private int calculateDepthOfBinaryTree(TreeNode root) {
+        if(root == null) return 0;
 
         int depthOfTree = 0;
-        int countOfNodes = 0;
-
         Deque<TreeNode> queueOfNodes = new ArrayDeque<>();
+        
         queueOfNodes.offer(root);
-
+        
         while(!queueOfNodes.isEmpty()) {
             int queueSize = queueOfNodes.size();
 
             for(int i = 0; i < queueSize; i++) {
                 TreeNode currentNode = queueOfNodes.poll();
-                countOfNodes++;
 
                 if(currentNode.left != null) queueOfNodes.offer(currentNode.left);
                 if(currentNode.right != null) queueOfNodes.offer(currentNode.right);
@@ -36,7 +43,8 @@ class Solution {
             depthOfTree++;
         }
 
-        int maxDepthOfBalancedTree = (int) Math.floor(Math.log(countOfNodes) / Math.log(2)) + 1;
-        return depthOfTree <= maxDepthOfBalancedTree;
+        return depthOfTree;
     }
 }
+
+// Another failed attempt at solving the problem. Apparantly, I need clarification about what exactly is a heigth-balanced binary tree
