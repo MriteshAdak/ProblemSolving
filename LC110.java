@@ -15,36 +15,31 @@
  */
 class Solution {
     public boolean isBalanced(TreeNode root) {
-        if(root == null || (root.left == null && root.right == null)) return true;
-        
-        int depthOfLeftSubTree = calculateDepthOfBinaryTree(root.left);
-        int depthOfRightSubTree = calculateDepthOfBinaryTree(root.right);
-
-        return Math.abs(depthOfLeftSubTree - depthOfRightSubTree) <= 1;
+        return checkBalance(root) != -1;
     }
 
-    private int calculateDepthOfBinaryTree(TreeNode root) {
-        if(root == null) return 0;
+    private int checkBalance(TreeNode node) {
 
-        int depthOfTree = 0;
-        Deque<TreeNode> queueOfNodes = new ArrayDeque<>();
-        
-        queueOfNodes.offer(root);
-        
-        while(!queueOfNodes.isEmpty()) {
-            int queueSize = queueOfNodes.size();
-
-            for(int i = 0; i < queueSize; i++) {
-                TreeNode currentNode = queueOfNodes.poll();
-
-                if(currentNode.left != null) queueOfNodes.offer(currentNode.left);
-                if(currentNode.right != null) queueOfNodes.offer(currentNode.right);
-            }
-            depthOfTree++;
+        if (node == null) {
+            return 0;
         }
-
-        return depthOfTree;
+        
+        int leftHeight = checkBalance(node.left);
+        if (leftHeight == -1) {
+            return -1;
+        }
+        
+        int rightHeight = checkBalance(node.right);
+        if (rightHeight == -1) {
+            return -1;
+        }
+        
+        if (Math.abs(leftHeight - rightHeight) > 1) {
+            return -1;
+        }
+        
+        return 1 + Math.max(leftHeight, rightHeight);
     }
 }
 
-// Another failed attempt at solving the problem. Apparantly, I need clarification about what exactly is a heigth-balanced binary tree
+//Solved
