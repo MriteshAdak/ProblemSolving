@@ -13,6 +13,7 @@
  *     }
  * }
  */
+
 class Solution {
     public boolean hasPathSum(TreeNode root, int targetSum) {
         
@@ -42,3 +43,5 @@ class Solution {
         return false;
     }
 }
+
+//Solved using DFS tree traversal
