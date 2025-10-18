@@ -1,4 +1,3 @@
-import java.util.HashMap;
 
 class LC136 {
     public static void main(String args[]) {
@@ -8,7 +7,7 @@ class LC136 {
     }
 }
 
-
+/*
 class Solution {
     public int singleNumber(int[] nums) {
         HashMap<Integer, Integer> countTable = new HashMap<>();
@@ -22,5 +21,17 @@ class Solution {
         }
         
         return 0;
+    }
+}
+    */
+
+class Solution {
+// copilot suggested method using XOR instead
+    public int singleNumber(int[] nums) {
+        int result = 0;
+        for(int num : nums) {
+            result ^= num;
+        }
+        return result;
     }
 }
