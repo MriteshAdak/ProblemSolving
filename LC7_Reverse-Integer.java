@@ -1,25 +1,18 @@
 class Solution {
     public int reverse(int x) {
+        long reversed = 0;
         
-        if (x == 0) return 0;
-
-        try {
-            int temp = Math.abs(x);
-            String reverse = "";
+        while (x != 0) {
+            int pop = x % 10;
+            x /= 10;
             
-            while (temp > 0) {
-                reverse += temp % 10;
-                temp = (int) temp / 10;
+            reversed = (reversed * 10) + pop;
+            
+            if (reversed > Integer.MAX_VALUE || reversed < Integer.MIN_VALUE) {
+                return 0;
             }
-
-            int result = Integer.parseInt(reverse);
-
-            if (x < 0) result = -result;
-
-            return result;
         }
-        catch (NumberFormatException n) {
-            return 0;
-        }
+        
+        return (int) reversed;
     }
 }
